@@ -1,4 +1,4 @@
-module github.com/cloud-pratica/cloud-pratica-backend/packages/s3env
+module github.com/cloud-pratica/cloud-pratica-packages/s3env
 
 go 1.24.2
 
