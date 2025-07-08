@@ -17,7 +17,7 @@ Amazon S3 に保存された`.env`ファイルから環境変数を読み込む 
 ## インストール
 
 ```bash
-go get github.com/cloud-pratica/cloud-pratica-backend/packages/s3env
+go get github.com/cloud-pratica/cloud-pratica-backend/packages/go/s3env
 ```
 
 ## 使用方法
@@ -32,7 +32,7 @@ import (
     "log"
     "os"
 
-    "github.com/cloud-pratica/cloud-pratica-backend/packages/s3env"
+    "github.com/cloud-pratica/cloud-pratica-backend/packages/go/s3env"
 )
 
 func main() {
