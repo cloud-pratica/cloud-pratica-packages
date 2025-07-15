@@ -1,4 +1,4 @@
-package s3env
+package psenv
 
 import (
 	"context"
