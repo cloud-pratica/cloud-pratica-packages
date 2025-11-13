@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package costprovider;
+
+option go_package = "github.com/cloud-pratica/cloud-pratica-packages/proto/cost-provider/gen/costproviderpb";
+
+enum Provider {
+  PROVIDER_UNSPECIFIED = 0;
+  AWS = 1;
+  GCP = 2;
+  DATADOG = 3;
+}
+
+service CostProviderService {
+  // return cost amount between [start, end)
+  rpc GetCost(GetCostRequest) returns (GetCostResponse);
+}
+
+message GetCostRequest {
+  Provider provider = 1;
+  // 集計開始日(YYYY-MM-DD)
+  string start_date = 2;
+  // 集計終了日(YYYY-MM-DD)
+  string end_date = 3;
+}
+
+message GetCostResponse {
+  Provider provider = 1;
+  double total_cost = 2;
+  repeated ServiceCost service_costs = 3;
+}
+
+message ServiceCost {
+  string service_name = 1;
+  double cost = 2;
+}
