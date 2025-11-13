@@ -43,8 +43,7 @@ func New(logLevel string, attrs ...slog.Attr) *slog.Logger {
 		}
 	}
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
-		Level:     slogLogLevelMap[logLevel],
-		AddSource: true,
+		Level: slogLogLevelMap[logLevel],
 	}).WithAttrs(handlerAttrs))
 	return logger
 }
