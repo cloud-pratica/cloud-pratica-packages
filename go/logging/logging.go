@@ -35,15 +35,17 @@ func FromContext(ctx context.Context) *slog.Logger {
 	return defaultLogger
 }
 
-func New(logLevel, serviceName, env, version string) *slog.Logger {
+func New(logLevel string, attrs ...slog.Attr) *slog.Logger {
+	handlerAttrs := []slog.Attr{}
+	for _, attr := range attrs {
+		if attr.Key != "" {
+			handlerAttrs = append(handlerAttrs, attr)
+		}
+	}
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
 		Level:     slogLogLevelMap[logLevel],
 		AddSource: true,
-	}).WithAttrs([]slog.Attr{
-		slog.String("service", serviceName),
-		slog.String("env", env),
-		slog.String("version", version),
-	}))
+	}).WithAttrs(handlerAttrs))
 	return logger
 }
 
