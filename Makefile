@@ -1,19 +1,25 @@
+SHELL := /bin/bash -o pipefail
+# リポジトリのルートディレクトリ
 ROOT_DIR := $(shell git rev-parse --show-toplevel 2>/dev/null || dirname $(lastword $(MAKEFILE_LIST)))
+# 現在のディレクトリ
 CURRENT_DIR := $(shell pwd)
-DIR_NAME := $(shell python3 -c "import os; print(os.path.relpath('$(CURRENT_DIR)', '$(ROOT_DIR)'))" 2>/dev/null || echo "$(shell basename $(PWD))")
+# リポジトリのルートからの相対パスを取得
+ROOT_REL_PATH := $(shell python3 -c "import os; print(os.path.relpath('$(CURRENT_DIR)', '$(ROOT_DIR)'))" 2>/dev/null || echo "$(shell basename $(PWD))")
+# タグ名
+TAG_NAME := $(ROOT_REL_PATH)/$(VERSION)
 
 # バージョンをタグ付けしてプッシュする
 # e.g: make push VERSION=v1.0.0
-push: .check-version
-	git tag $(DIR_NAME)/$(VERSION); \
-	git push origin $(DIR_NAME)/$(VERSION)
-	@echo "Pushed tag: $(DIR_NAME)/$(VERSION)"
+push:
+	git tag $(TAG_NAME); \
+	git push origin $(TAG_NAME)
+	@echo "Pushed tag: $(TAG_NAME)"
 	@echo $(VERSION) > $(CURRENT_DIR)/version
 
 # 現在のバージョンを表示する
 # e.g: make version
 version:
-	@echo $(DIR_NAME)/$$(cat $(CURRENT_DIR)/version)
+	@echo $(ROOT_REL_PATH)/$$(cat $(CURRENT_DIR)/version)
 
 .PHONY: bump version
 

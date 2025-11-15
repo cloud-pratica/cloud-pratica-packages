@@ -1,6 +1,5 @@
 include ../Makefile
 
-SHELL := /bin/bash -o pipefail
 SERVICE ?= cost-provider
 
 # proto ファイルから Go コードを生成
