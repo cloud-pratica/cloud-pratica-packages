@@ -82,7 +82,7 @@ make push VERSION=v0.1.1
 
 `make push` コマンドは、指定されたバージョンが正しい形式かどうかを自動的にチェックします。
 
-## ⚠️ 重要な注意事項
+## 補足
 
 ### version ファイルの自動更新
 
@@ -122,7 +122,7 @@ echo "include ../../Makefile" > go/newpackage/Makefile
 
 `version` ファイルがない状態で `make push` を実行すると、エラーが発生します。
 
-## 📝 使用例
+## 使用例
 
 ### 例 1: パッチバージョンの更新
 
