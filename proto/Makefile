@@ -1,3 +1,5 @@
+include ../Makefile
+
 SHELL := /bin/bash -o pipefail
 SERVICE ?= cost-provider
 
