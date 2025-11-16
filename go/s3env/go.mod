@@ -7,7 +7,6 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.29.17
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.83.0
 	github.com/google/go-cmp v0.7.0
-	github.com/pkg/errors v0.9.1
 )
 
 require (

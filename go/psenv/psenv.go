@@ -46,7 +46,7 @@ func Load(ctx context.Context, path string) error {
 		WithDecryption: aws.Bool(true),
 	})
 	if err != nil {
-		return errors.Wrap(err, "client.GetParameter")
+		return fmt.Errorf("client.GetParameter: %w", err)
 	}
 
 	value := res.Parameter.Value

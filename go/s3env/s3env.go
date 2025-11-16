@@ -10,7 +10,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/pkg/errors"
 )
 
 // parseEnvContent .envファイルの内容を解析して環境変数のマップを返す
@@ -47,7 +46,7 @@ func Load(ctx context.Context, bucket, key string) error {
 		Key:    aws.String(key),
 	})
 	if err != nil {
-		return errors.Wrap(err, "client.GetObject")
+		return fmt.Errorf("client.GetObject: %w", err)
 	}
 	defer out.Body.Close()
 
