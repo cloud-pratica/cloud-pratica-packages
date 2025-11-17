@@ -57,6 +57,5 @@ func Load(ctx context.Context, bucket, key string) error {
 	for key, value := range envVars {
 		os.Setenv(key, value)
 	}
-
 	return nil
 }
